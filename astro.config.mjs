@@ -7,11 +7,15 @@ import mdx from "@astrojs/mdx";
 import sanity from "astro-sanity";
 
 // https://astro.build/config
+import netlify from "@astrojs/netlify/edge-functions";
+// https://astro.build/config
 export default defineConfig({
   integrations: [mdx(), sanity({
     projectId: 'etgrd1n2',
     dataset: 'production',
     apiVersion: '2023-02-22',
     useCdn: false
-  })]
+  })],
+  adapter: netlify(),
+  output: 'server'
 });
