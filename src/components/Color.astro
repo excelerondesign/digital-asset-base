@@ -1,0 +1,97 @@
+---
+import tinycolor from "../../node_modules/tinycolor2/esm/tinycolor.js";
+
+const { color } = Astro.props
+
+const tc = tinycolor(color);
+
+const hex = color;
+const rgb = tc.toRgbString();
+const hsl = tc.toHslString();
+---
+<li style={`--color: ${color}`} class="card-wrapper">
+    <div>
+        <div class="card">
+            <button class="card-color"><span class="sr-only">Copy hex code</span></button>
+            <div class="card-body">
+                <small>{hex}</small>
+                <small>{rgb}</small>
+                <small>{hsl}</small>
+                <small>lch(0 0 0)</small>
+            </div>
+        </div>
+    </div>
+    <div class="alert-wrapper">
+        <div class="alert">Color Copied</div>
+    </div>
+</li>
+<style>
+    .sr-only {
+        position: absolute !important;
+        width: 1px !important;
+        height: 1px !important;
+        padding: 0 !important;
+        margin: -1px !important;
+        overflow: hidden !important;
+        clip: rect(0,0,0,0) !important;
+        white-space: nowrap !important;
+        border: 0 !important;
+    }
+    .card-wrapper {
+        --radius: 0.5rem;
+        --pad: .5rem;
+        grid-column: span 1;
+        position: relative;
+    }
+    .alert-wrapper {
+        display: grid;
+        place-content: center;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        margin: 0 auto;
+    }
+    .alert {
+        transition: transform 0.5s ease;
+        z-index: -1;
+        transform: translateY(calc(100% + var(--pad)));
+        background-color: #42a3ffaa;
+        padding: var(--pad) calc(var(--pad) * 2);
+        border-radius: 400px;
+        width: max-content;
+        text-align: center;
+    }
+    .card-wrapper:not(.copied) .alert {
+        transform: translateY(-100%);
+    }
+    .card {
+        background: white;
+        display: flex;
+        flex-flow: column;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        padding: var(--pad);
+        padding-bottom: 2rem;
+        border: 1px solid #d0d1ff;
+        border-radius: calc(var(--radius) + var(--pad));
+        position: relative;
+        z-index: 11;
+    }
+    .card-color {
+        background-color: var(--color);
+        min-height: 150px;
+        width: 100%;
+        border-radius: var(--radius);
+        border: unset;
+    }
+    .card > * + * {
+        margin-top: .5em;
+    }
+    .card-body {
+        display: flex;
+        flex-flow: column;
+        gap: .5em;
+        padding: var(--pad)
+    }
+</style>

@@ -1,0 +1,33 @@
+---
+import { data, ColorData } from "../lib/sanityData";
+import Color from "./Color.astro";
+---
+<ul role="list">
+    {data.colors.map((color: ColorData) => <Color color={color} />)}
+</ul>
+<script>
+    document.querySelectorAll('button.card-color').forEach(btn => {
+        btn.addEventListener('pointerdown', () => {
+            const wrapper = btn.closest<HTMLLIElement>('[style*="--color"]');
+            const color = wrapper?.style.getPropertyValue('--color');
+            const alert = wrapper.querySelector('.alert');
+            navigator.clipboard.writeText(color);
+            alert.addEventListener('transitionend', () => {
+                setTimeout(() => wrapper.classList.remove('copied'), 1000);
+            },{ once: true })
+            wrapper.classList.add('copied')
+        })
+    })
+</script>
+<style>
+    ul {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+        gap: 1rem;
+        margin: 0;
+        padding: 0;
+    }
+    [role="list"] {
+        list-style-type: none;
+    }
+</style>

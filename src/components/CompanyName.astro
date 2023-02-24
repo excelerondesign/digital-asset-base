@@ -1,0 +1,14 @@
+---
+import { data } from '../lib/sanityData';
+// console.log(address);
+// console.log(data);
+/*
+const information = await contentfulClient.getEntries<CompanyInformation>({
+    content_type: 'globalInformation'
+})
+const companyName = information.items.map(item => item.fields)[0].companyName;
+
+console.log(companyName);*/
+---
+
+<span>{data.name}</span>
