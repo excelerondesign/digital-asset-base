@@ -1,6 +1,10 @@
 ---
-import { data, ColorData } from "../lib/sanityData";
+// import { data, ColorData } from "../lib/sanityData";
 import Color from "./Color.astro";
+
+const data = {
+    colors: []
+}
 ---
 <ul role="list">
     {data.colors.map((color: ColorData) => <Color color={color} />)}
