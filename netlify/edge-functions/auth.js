@@ -30,5 +30,8 @@ export default async (req, _ctx) => {
 
 export default async (req, ctx) => {
     console.log('is literally anything happening???');
+
+
+    
     return ctx.rewrite('/auth');
 }
