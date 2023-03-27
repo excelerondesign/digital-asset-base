@@ -1,6 +1,6 @@
 // @ts-check
 /**
- * @param {Request} req
+ // * @param {Request} req
  */
 /*
 // @NOTE: Man who knows,,, at this point I'm starting to think it might not be possible
@@ -27,11 +27,20 @@ export default async (req, _ctx) => {
     // being console-able
     // return Response.redirect(new URL('/auth'));
 }*/
+/**
+ * @param {Request} _req
+ */
+export default async (_req, ctx) => {
+    const authCookie = ctx.cookies.get('bg_auth');
 
-export default async (req, ctx) => {
-    console.log('is literally anything happening???');
-
-
+    if (authCookie !== undefined) {
+        ctx.cookies.delete('bg_auth');
+        return ctx.next();
+    }
     
-    return ctx.rewrite('/auth');
+    return ctx.rewrite('/');
+}
+
+export const config = {
+    path: '/guide/*'
 }
