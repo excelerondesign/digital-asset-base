@@ -1,11 +1,33 @@
 ---
 import Layout from "../layouts/Layout.astro";
----
 
+// export const pass = 'test';
+---
 <Layout title="Login to see more">
     <main>
-        <input type="text" id="password" />
-        <button type="submit">Log In</button>
-        <small>Be sure to login using the password given to you.</small>
+        <form action="/" method="post" id="loginForm">
+            <input type="text" id="password" />
+            <button type="submit">Log In</button>
+            <small>Be sure to login using the password given to you.</small>
+        </form>
     </main>
 </Layout>
+<script>
+    // import { pass } from "./login.astro"
+    const form = document.getElementById('loginForm') as HTMLFormElement;
+    const pass = 'test';
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        console.log("??????")
+        const input = form.querySelector<HTMLInputElement>('#password').value;
+        console.log(input, pass);
+        if (input === pass) {
+            const secondsInADay = 60 * 60 * 24; 
+
+            const expiration = secondsInADay * 30;
+            console.log('yippeee');
+            document.cookie = 'bg_auth=true;max-age='+expiration;
+            form.submit();
+        }
+    })
+</script>
