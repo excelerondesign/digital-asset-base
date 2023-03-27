@@ -1,14 +1,17 @@
 ---
-// import { data } from '../lib/sanityData';
-// console.log(address);
-// console.log(data);
-/*
-const information = await contentfulClient.getEntries<CompanyInformation>({
-    content_type: 'globalInformation'
-})
-const companyName = information.items.map(item => item.fields)[0].companyName;
-
-console.log(companyName);*/
+import { data } from '../lib/sanityData';
+const {
+    useGradient
+} = Astro.props
 ---
 
-<span>{/*data.name*/}</span>
+<span class={useGradient ? 'text-gradient' : ''}>{data.name}</span>
+<style is:global>
+    .text-gradient {
+		background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+	}
+</style>
