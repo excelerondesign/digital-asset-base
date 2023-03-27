@@ -1,63 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
 import CompanyName from '../components/CompanyName.astro';
-import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import LoginForm from '../components/LoginForm.astro';
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
-		<h1>Welcome <span class="text-gradient"><CompanyName /></span></h1>
-		<Navigation />
-		<p class="instructions">
-			This is your <strong>brand guide</strong>, below you can find links to everything that has been created by Exceleron Designs to help unify your brand.
+		<h1>Welcome <CompanyName useGradient={true} /></h1>
+		<p>
+			Login to view your brand guide.
 		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="/colors"
-				title="Colors"
-				body="Your brands collection of colors"
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Print Media"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Logos"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Business Cards"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
+		<LoginForm />
 	</main>
 	<Footer />
 </Layout>
 
 <style>
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 70ch;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-		margin-bottom: 0.2em;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
 	.instructions {
 		line-height: 1.6;
 		margin: 1rem 0;

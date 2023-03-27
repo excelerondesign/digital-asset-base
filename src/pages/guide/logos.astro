@@ -1,0 +1,14 @@
+---
+import CompanyName from "../../components/CompanyName.astro";
+import Layout from "../../layouts/Layout.astro";
+import { data } from "../../lib/sanityData";
+
+const assets = data.assets;
+---
+<Layout title="Logos">
+    <main>
+        <h1><CompanyName useGradient={true} /> Logos</h1>
+        {assets.forEach(asset => <p>{JSON.stringify(asset)}</p>)}
+    </main>
+</Layout>
+
