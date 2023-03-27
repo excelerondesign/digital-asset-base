@@ -18,8 +18,31 @@ const colors = Object.assign(
     )
 );
 
+const assetData = await useSanityClient().fetch(`*[_type == "assets"]{
+    logos,
+    stock,
+    other
+}`)
+console.log(assetData);
+const assets = assetData.map(assetObject => {
+    const categories = Object.keys(assetObject).filter(name => name.indexOf('_') !== 0);
+
+    const data = [];
+    for(const c of categories) {
+        console.log(JSON.stringify(assetObject[c]));
+        data.push({
+            name: c,
+            files: assetObject[c]
+        });
+    }
+
+    console.log(data);
+    return [];
+})
+
 export const data = {
     name,
     colors,
-    address
+    address,
+    assets
 }
