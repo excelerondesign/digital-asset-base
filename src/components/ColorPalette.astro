@@ -1,25 +1,26 @@
 ---
-// import { data, ColorData } from "../lib/sanityData";
+import { data, ColorData } from "../lib/sanityData";
 import Color from "./Color.astro";
-
-const data = {
-    colors: []
-}
 ---
-<ul role="list">
+<ul role="list" class="color-palette">
     {data.colors.map((color: ColorData) => <Color color={color} />)}
 </ul>
 <script>
     document.querySelectorAll('button.card-color').forEach(btn => {
         btn.addEventListener('pointerdown', () => {
             const wrapper = btn.closest<HTMLLIElement>('[style*="--color"]');
+            const list = btn.closest('ul');
             const color = wrapper?.style.getPropertyValue('--color');
             const alert = wrapper.querySelector('.alert');
             navigator.clipboard.writeText(color);
             alert.addEventListener('transitionend', () => {
-                setTimeout(() => wrapper.classList.remove('copied'), 1000);
+                setTimeout(() => {
+                    wrapper.classList.remove('copied')
+                    list.classList.remove('copied')
+                }, 1000);
             },{ once: true })
-            wrapper.classList.add('copied')
+            wrapper.classList.add('copied');
+            list.classList.add('copied');
         })
     })
 </script>

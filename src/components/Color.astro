@@ -42,7 +42,13 @@ const hsl = tc.toHslString();
         --pad: .5rem;
         grid-column: span 1;
         position: relative;
+        transition: z-index 0.25s ease;
+        z-index: 1;
     }
+    .card-wrapper:not(.copied) {
+        z-index: 0;
+    }
+
     .alert-wrapper {
         display: grid;
         place-content: center;
@@ -57,11 +63,12 @@ const hsl = tc.toHslString();
         transition: transform 0.5s ease;
         z-index: -1;
         transform: translateY(calc(100% + var(--pad)));
-        background-color: #42a3ffaa;
+        background-color: #42a3ff;
         padding: var(--pad) calc(var(--pad) * 2);
         border-radius: 400px;
         width: max-content;
         text-align: center;
+        color: #fff;
     }
     .card-wrapper:not(.copied) .alert {
         transform: translateY(-100%);
