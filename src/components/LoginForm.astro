@@ -1,0 +1,48 @@
+<form action="/guide/" method="post" id="loginForm">
+    <div>
+        <input type="text" id="password" />
+        <button type="submit">Log In</button>
+    </div>
+    <small>Be sure to login using the password given to you.</small>
+</form>
+<script>
+    // import { pass } from "./login.astro"
+    const form = document.getElementById('loginForm') as HTMLFormElement;
+    const pass = 'test';
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        console.log("??????")
+        const input = form.querySelector<HTMLInputElement>('#password').value;
+        console.log(input, pass);
+        if (input === pass) {
+            const secondsInADay = 60 * 60 * 24; 
+
+            const expiration = secondsInADay * 30;
+            console.log('yippeee');
+            document.cookie = 'bg_auth=true;max-age='+expiration;
+            form.submit();
+        }
+    })
+</script>
+<style>
+    form {
+        --radius: 10px;
+    }
+    input {
+        background-color: #e6e6e6;
+        border: unset;
+        border-radius: var(--radius) 0 0 var(--radius);
+        font-size: 2rem;
+    }
+    input + button {
+        background-color: rgb(var(--accent));
+        color: white;
+        border: unset;
+        border-radius: 0 var(--radius) var(--radius) 0;
+        padding: calc(1rem - 0.5ch) 2rem;
+    }
+    form > div {
+        display: flex;
+        align-items: center;
+    }
+</style>
